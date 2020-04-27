@@ -24,7 +24,7 @@ export default class App extends React.Component {
         return (
             this.state.gameState == GameStates.WELCOME ? 
                 <Welcome onClickParam={GameStates.FETCHING_QUESTIONS} onClick={this.changeGameState} /> : 
-                <Game />
+                <Game onClickParam={GameStates.WELCOME} onClick={this.changeGameState} />
         );
     }
 }

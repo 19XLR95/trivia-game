@@ -28,13 +28,23 @@ export default class AnswerResult extends React.Component {
 
     render() {
         return (
-            <div>
-                <Lottie options={this.state.failAnimConfig} width={200} height={200} />
-                <p>Correct!</p>
-                <p>You have earned 100 points</p>
-                <p>Total: 300 points</p>
-                <Button buttonName="Next Question" classes="medium success" />
-            </div>
+            this.props.answerResult ? 
+                <div>
+                    <Lottie isClickToPauseDisabled={true} options={this.state.successAnimConfig} width={200} height={200} />
+                    <p>Correct!</p>
+                    <p>You have earned 100 points</p>
+                    <p>Total: 300 points</p>
+                    <Button buttonName="Next Question" classes="medium success" 
+                        onClick={this.props.correctOnClick} onClickParam={this.props.correctOnClickParam} />
+                </div> :
+                <div>
+                    <Lottie isClickToPauseDisabled={true} options={this.state.failAnimConfig} width={200} height={200} />
+                    <p>Wrong!</p>
+                    <p>But don't worry you can try again :)</p>
+                    <p>You collected: 300 points</p>
+                    <Button buttonName="Try Again" classes="medium fail" 
+                        onClick={this.props.wrongOnClick} onClickParam={this.props.wrongOnClickParam} />
+                </div>
         );
     }
 }
