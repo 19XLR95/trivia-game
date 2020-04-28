@@ -108,7 +108,10 @@ export default class Game extends React.Component {
                             wrongOnClickParam={this.props.onClickParam}
                             totalPoint={this.state.totalPoint}
                             currentEarnedPoint={this.state.currentEarnedPoint} /> :
-                    <GameFinish startAgainClick={this.props.onClick} startAgainClickParam={this.props.onClickParam} />
+                    <GameFinish 
+                        startAgainClick={this.props.onClick} 
+                        startAgainClickParam={this.props.onClickParam}
+                        totalPoint={this.state.totalPoint} />
                 }
             </div>
         );

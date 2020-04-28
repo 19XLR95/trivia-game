@@ -24,7 +24,7 @@ export default class GameFinish extends React.Component {
                 <Lottie isClickToPauseDisabled={true} options={this.state.finishAnimConfig} width={200} height={200} />
                 <p>Congratulations!</p>
                 <p>You finished the game successfully.</p>
-                <p>Total: 300 points</p>
+                <p>Total: {this.props.totalPoint} points</p>
                 <Button buttonName="Start Again" classes="medium success"
                     onClick={this.props.startAgainClick} onClickParam={this.props.startAgainClickParam} />
             </div>
