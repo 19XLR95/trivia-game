@@ -8,9 +8,9 @@ export default class GameStats extends React.Component {
     render() {
         return (
             <div>
-                <div>Question 2/10</div>
+                <div>Question {this.props.currentQuestionNumber}/{this.props.totalQuestions}</div>
                 <div>
-                    <div>200</div>
+                    <div>{this.props.totalPoint}</div>
                     <div>Points</div>
                 </div>
             </div>
