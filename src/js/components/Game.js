@@ -8,6 +8,7 @@ import LoadingAnim from "../../../assets/loading-anim.json";
 import AnswerResult from "./AnswerResult";
 import GameFinish from "./GameFinish";
 import GameConstants from "../../constants/GameConstants";
+import GameError from "./GameError";
 
 export default class Game extends React.Component {
     constructor(props) {
@@ -25,7 +26,8 @@ export default class Game extends React.Component {
             totalPoint: 0,
             questions: null,
             currentQuestionIndex: 0,
-            currentEarnedPoint: 0
+            currentEarnedPoint: 0,
+            errorMessage: ""
         };
 
         this.changeGameState = this.changeGameState.bind(this);
@@ -74,14 +76,12 @@ export default class Game extends React.Component {
                         currentQuestionIndex: 0
                     });
                 } else {
-                    // TODO: questions cannot retrieved
+                    this.setState({
+                        gameState: GameStates.ERROR,
+                        errorMessage: "Couldn't get questions! Sorry."
+                    });
                 }
-            }, {
-                amount: 5,
-                type: "multiple",
-                difficulty: "easy",
-                category: 9
-            }
+            }, this.props.params
         );
     }
 
@@ -94,7 +94,9 @@ export default class Game extends React.Component {
                     totalQuestions={this.state.questions ? this.state.questions.length : 0} />
                 {
                     this.state.gameState == GameStates.FETCHING_QUESTIONS ?
-                        <div><Lottie options={this.state.loadingAnimConfig} width={300} height={300} /></div> :
+                        <div><Lottie isClickToPauseDisabled={true} options={this.state.loadingAnimConfig} width={300} height={300} /></div> :
+                    this.state.gameState == GameStates.ERROR ?
+                        <GameError errorMessage={this.state.errorMessage} onClick={this.props.onClick} onClickParam={this.props.onClickParam} /> :
                     this.state.gameState == GameStates.GAME ?
                         <GameQuestions 
                             question={this.state.questions[this.state.currentQuestionIndex]} 
@@ -103,7 +105,7 @@ export default class Game extends React.Component {
                         <AnswerResult 
                             answerResult={this.state.answerResult} 
                             correctOnClick={this.nextQuestion}
-                            correctOnClickParam=""
+                            correctOnClickParam={[""]}
                             wrongOnClick={this.props.onClick}
                             wrongOnClickParam={this.props.onClickParam}
                             totalPoint={this.state.totalPoint}

@@ -7,6 +7,7 @@ $naturalColor: #A9A9A9;
 $successColorBorder: #2E8B57;
 $failColorBorder: #B22222;
 $naturalColorBorder: #808080;
+$selectColorBorder: #a5a5a5;
 
 body, html {
     width: 100%;
@@ -28,6 +29,43 @@ body, html {
             align-items: center;
             justify-content: center;
             padding: 0 5% 0 5%;
+
+            > div {
+                margin-bottom: 25px;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                gap: 25px;
+
+                @media (max-width: 1085px) {
+                    grid-template-columns: 1fr 1fr;
+                }
+
+                @media (max-width: 540px) {
+                    grid-template-columns: 1fr;
+                }
+
+                select {
+                    background-color: transparent;
+                    border: 2px solid black;
+                    font-family: $mainFont;
+                    font-weight: 700;
+                    font-size: 20px;
+                    border-radius: 7px;
+                    padding: 5px 10px 5px 10px;
+                    cursor: pointer;
+                    max-width: 250px;
+                    min-width: 250px;
+                    box-shadow: 0px 7px 0px 0px $selectColorBorder;
+                    position: relative;
+                    top: 0;
+                    transition: all 0.1s;
+                }
+
+                select:active {
+                    top: 7px;
+                    box-shadow: 0px 0px 0px 0px $selectColorBorder;
+                }
+            }
         }
     
         button {
@@ -58,6 +96,14 @@ body, html {
             font-size: 20px;
             font-weight: 700;
             min-width: 250px;
+        }
+
+        .small {
+            padding: 10px 20px 10px 20px;
+            font-size: 17px;
+            font-weight: 700;
+            border-radius: 7px;
+            max-width: 200px;
         }
         
         .success {

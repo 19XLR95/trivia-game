@@ -45,7 +45,7 @@ export default class GameQuestions extends React.Component {
                                     key={e.id} 
                                     buttonName={decodeURIComponent(e.choice)}
                                     onClick={this.checkAnswer}
-                                    onClickParam={e}
+                                    onClickParam={[e]}
                                     classes="medium natural"
                                 />
                         ) :
@@ -54,7 +54,7 @@ export default class GameQuestions extends React.Component {
                                     key={e.id} 
                                     buttonName={decodeURIComponent(e.choice)}
                                     onClick={this.checkAnswer}
-                                    onClickParam={e}
+                                    onClickParam={[e]}
                                     classes={
                                         this.state.userAnswer == e.id && !e.isCorrect ? "medium fail" : 
                                         e.isCorrect ? "medium success" : 
