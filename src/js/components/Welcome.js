@@ -62,7 +62,7 @@ export default class Welcome extends React.Component {
     render () {
         return (
             <div id="welcome">
-                <img src={X} style={{width: "128px", height: "auto", maxWidth: "100%"}} />
+                <img src={X} />
                 <h1>Welcome to the best trivia game of the world!</h1>
                 <div>
                     <Select onChanged={this.updateParams} options={GameConstants.DIFFICULTIES} disabled={false} />
